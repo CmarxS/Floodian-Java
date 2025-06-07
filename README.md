@@ -20,8 +20,7 @@ Permitir que dados de sensores IoT (nível de água, pluviômetros, pressão, et
 
 - Link do deploy da API: [https://floodian-java.onrender.com]
 - Link Swagger: [https://floodian-java.onrender.com/Floodian/swagger-ui/swagger-ui/index.html] 
-- Link dos vídeos de demonstração e pitch: Pitch[https://youtu.be/Pg6Rxiwu_0o]  
-
+- Link Pitch: [https://youtu.be/Pg6Rxiwu_0o]
 ---
 
 ## Instruções para Acesso e Testes
