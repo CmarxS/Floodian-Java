@@ -27,14 +27,13 @@ public class MedicaoService {
 
     public Medicao atualizar(Long id, Medicao medicaoAtualizada) {
         Medicao existente = repository.findById(id).orElse(null);
-        if (existente != null) {
-            existente.setId(medicaoAtualizada.getId());
-            existente.setSensor(medicaoAtualizada.getSensor());
-            existente.setMomento(medicaoAtualizada.getMomento());
-            existente.setValor(medicaoAtualizada.getValor());
-            return repository.save(existente);
+        if (existente == null) {
+            return null;
         }
-        return null;
+        existente.setSensor(medicaoAtualizada.getSensor());
+        existente.setMomento(medicaoAtualizada.getMomento());
+        existente.setValor(medicaoAtualizada.getValor());
+        return repository.save(existente);
     }
 
     public void deletar(Long id) {

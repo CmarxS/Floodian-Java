@@ -26,19 +26,21 @@ public class SensorService {
     }
 
     public Sensor atualizar(Long id, Sensor sensorAtualizado) {
-        Sensor existente = repository.findById(id).orElse(null);
-        if (existente != null) {
-            existente.setId(sensorAtualizado.getId());
-            existente.setLocalizacao(sensorAtualizado.getLocalizacao());
-            existente.setDataInstalacao(sensorAtualizado.getDataInstalacao());
-            existente.setStatus(sensorAtualizado.getStatus());
-            existente.setNumeroSerie(sensorAtualizado.getNumeroSerie());
-            existente.setLimiteAlerta(sensorAtualizado.getLimiteAlerta());
-            existente.setIntervaloHoras(sensorAtualizado.getIntervaloHoras());
-            return repository.save(existente);
+        Sensor existente = repository.findById(id)
+                .orElse(null);
+
+        if (existente == null) {
+            return null;
         }
-        return null;
+        existente.setLocalizacao(sensorAtualizado.getLocalizacao());
+        existente.setDataInstalacao(sensorAtualizado.getDataInstalacao());
+        existente.setStatus(sensorAtualizado.getStatus());
+        existente.setNumeroSerie(sensorAtualizado.getNumeroSerie());
+        existente.setLimiteAlerta(sensorAtualizado.getLimiteAlerta());
+        existente.setIntervaloHoras(sensorAtualizado.getIntervaloHoras());
+        return repository.save(existente);
     }
+
 
     public void deletar(Long id) {
         repository.deleteById(id);

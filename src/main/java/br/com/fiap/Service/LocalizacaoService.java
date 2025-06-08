@@ -28,16 +28,15 @@ public class LocalizacaoService {
 
     public Localizacao atualizar(Long id, Localizacao localizacaoAtualizada) {
         Localizacao existente = repository.findById(id).orElse(null);
-        if (existente != null) {
-            existente.setId(localizacaoAtualizada.getId());
-            existente.setNome(localizacaoAtualizada.getNome());
-            existente.setLatitude(localizacaoAtualizada.getLatitude());
-            existente.setLongitude(localizacaoAtualizada.getLongitude());
-            existente.setTipoArea(localizacaoAtualizada.getTipoArea());
-            existente.setDescricao(localizacaoAtualizada.getDescricao());
-            return repository.save(existente);
+        if (existente == null) {
+            return null;
         }
-        return null;
+        existente.setNome(localizacaoAtualizada.getNome());
+        existente.setLatitude(localizacaoAtualizada.getLatitude());
+        existente.setLongitude(localizacaoAtualizada.getLongitude());
+        existente.setTipoArea(localizacaoAtualizada.getTipoArea());
+        existente.setDescricao(localizacaoAtualizada.getDescricao());
+        return repository.save(existente);
     }
 
     public void deletar(Long id) {

@@ -24,19 +24,20 @@ public class UsuarioService {
         return repository.findById(id).orElse(null);
     }
 
-    public UsuarioAplicacao atualizarUsuario(Long id, UsuarioAplicacao usuarioAtualizado) {
+    public UsuarioAplicacao atualizarUsuario(Long id, UsuarioAplicacao dados) {
         UsuarioAplicacao usuarioExistente = repository.findById(id).orElse(null);
-        if (usuarioExistente != null) {
-            usuarioAtualizado.setIdUsuario(usuarioAtualizado.getIdUsuario());
-            usuarioAtualizado.setSenha(usuarioExistente.getSenha());
-            usuarioAtualizado.setTelefone(usuarioAtualizado.getTelefone());
-            usuarioAtualizado.setEmail(usuarioAtualizado.getEmail());
-            usuarioAtualizado.setNome(usuarioAtualizado.getNome());
-            usuarioAtualizado.setTipoUsuario(usuarioAtualizado.getTipoUsuario());
-            return repository.save(usuarioAtualizado);
+        if (usuarioExistente == null) {
+            return null;
         }
-        return null; // ou lançar uma exceção
+        usuarioExistente.setNome(dados.getNome());
+        usuarioExistente.setEmail(dados.getEmail());
+        usuarioExistente.setTelefone(dados.getTelefone());
+        usuarioExistente.setTipoUsuario(dados.getTipoUsuario());
+        usuarioExistente.setSenha(dados.getSenha());
+
+        return repository.save(usuarioExistente);
     }
+
 
     public void deletarUsuario(Long id) {
         repository.deleteById(id);

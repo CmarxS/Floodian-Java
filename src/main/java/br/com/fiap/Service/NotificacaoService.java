@@ -27,18 +27,18 @@ public class NotificacaoService {
 
     public Notificacao atualizar(Long id, Notificacao notificacaoAtualizada) {
         Notificacao existente = repository.findById(id).orElse(null);
-        if (existente != null) {
-            existente.setId(notificacaoAtualizada.getId());
-            existente.setUsuario(notificacaoAtualizada.getUsuario());
-            existente.setSensor(notificacaoAtualizada.getSensor());
-            existente.setEnviadoEm(notificacaoAtualizada.getEnviadoEm());
-            existente.setMetodo(notificacaoAtualizada.getMetodo());
-            existente.setStatus(notificacaoAtualizada.getStatus());
-            existente.setMensagem(notificacaoAtualizada.getMensagem());
-            return repository.save(existente);
+        if (existente == null) {
+            return null;
         }
-        return null;
+        existente.setUsuario(notificacaoAtualizada.getUsuario());
+        existente.setSensor(notificacaoAtualizada.getSensor());
+        existente.setEnviadoEm(notificacaoAtualizada.getEnviadoEm());
+        existente.setMetodo(notificacaoAtualizada.getMetodo());
+        existente.setStatus(notificacaoAtualizada.getStatus());
+        existente.setMensagem(notificacaoAtualizada.getMensagem());
+        return repository.save(existente);
     }
+
 
     public void deletar(Long id) {
         repository.deleteById(id);
